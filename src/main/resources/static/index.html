@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html Analyzer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+    <link href="pagination.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+    <script src="pagination.js"></script>
+</head>
+<body id="connect">
+<div id="heading-content" class="text-center">
+    <h2>Html Analyzer</h2>
+    <p>Enter the URL in the text box below and click 'Analyze'</p>
+</div>
+
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+    enabled. Please enable Javascript and reload this page!</h2></noscript>
+
+<div id="main-content" class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form class="form-inline" id="analyze-form">
+                <div class="form-group w-100">
+                    <input type="text" class="custom-input" name="fname" id="url" placeholder="Enter URL" />
+                    <button id="submit" class="btn btn-custom" type="submit">Analyze</button>
+                </div>
+            </form>
+            <div id="error-message" class="text-danger mt-2" style="display: none;">Please enter a valid URL.</div>
+        </div>
+    </div>
+    <div id="tables-container" class="row" style="display: none;">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table id="tab-metadata" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Metadata</th>
+                    </tr>
+                    </thead>
+                    <tbody id="metadata"></tbody>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table id="tab-heading" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Heading</th>
+                    </tr>
+                    </thead>
+                    <tbody id="heading"></tbody>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table id="tab-link-count" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Link Count</th>
+                    </tr>
+                    </thead>
+                    <tbody id="links"></tbody>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table id="tab-links" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Links</th>
+                    </tr>
+                    </thead>
+                    <tbody id="data-container"></tbody>
+                </table>
+            </div>
+            <div id="pagination-container"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#analyze-form').on('submit', function(event) {
+            event.preventDefault();
+            var url = $('#url').val();
+            var urlPattern = /^(https?:\/\/)?([\w\d\-_]+\.+[A-Za-z]{2,})+\/?/;
+
+            if (!urlPattern.test(url)) {
+                $('#error-message').show();
+                $('#tables-container').hide();
+            } else {
+                $('#error-message').hide();
+                $('#tables-container').show();
+            }
+        });
+    });
+</script>
+</body>
+</html>

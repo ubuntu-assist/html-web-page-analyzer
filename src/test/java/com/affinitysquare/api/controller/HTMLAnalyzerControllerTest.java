@@ -48,7 +48,7 @@ class HTMLAnalyzerControllerTest {
 
     @Test
     void itShouldCheckIfPageVersionIsHtml5() throws Exception {
-        this.mockMvc.perform(get("/api/v1/metadata?url=https://google.com"))
+        this.mockMvc.perform(get("/api/v1/metadata?url=https://github.com"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.htmlVersion").value("HTML 5.0"));

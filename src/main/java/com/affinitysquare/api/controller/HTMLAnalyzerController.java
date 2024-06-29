@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +23,7 @@ import java.util.Map;
  * This is the main controller for handling HTML analysis requests.
  */
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("api/v1")
 public class HTMLAnalyzerController {
     private static final Log log = LogFactory.getLog(HTMLAnalyzerController.class);
 
@@ -122,7 +122,7 @@ public class HTMLAnalyzerController {
         link.setUrl(url);
         url = url.replaceFirst("^https", "http"); // Otherwise an exception may be thrown on invalid SSL certificates.
         try {
-            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+            HttpURLConnection connection = (HttpURLConnection) new URI(url).toURL().openConnection();
             connection.setConnectTimeout(timeout);
             connection.setReadTimeout(timeout);
             connection.setRequestMethod("HEAD");
@@ -141,5 +141,4 @@ public class HTMLAnalyzerController {
         }
         return link;
     }
-
 }

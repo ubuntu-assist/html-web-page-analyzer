@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.jsoup.nodes.Document;
 
 import java.net.URI;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class LinkCountExtractor implements HtmlDataExtractor<Map<LinkType, Integ
      */
     @Override
     public Map<LinkType, Integer> extract(Document document) {
-        Map<LinkType, Integer> map = new HashMap<>();
+        Map<LinkType, Integer> map = new EnumMap<>(LinkType.class);
         List<String> links = LinkExtractorHelper.extract(document);
         for(String link : links){
             matchAndUpdate(map, link, document);

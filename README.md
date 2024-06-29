@@ -1,16 +1,14 @@
 # HTML Web Page Analyzer
 
-A web-application which allows the user to conduct some analysis of an html web page. It provides a
-simple interface where user can enter a html page url and submit. The application processes the given html url
-and returns the results of analysis in a simple tabular fashion.
+A web application designed for users to analyze HTML web pages. It features a user-friendly interface where users can input an HTML page URL and submit it. The application then processes the URL and presents the analysis results in a clear, tabular format.
 
 ## Getting Started
 
-Follow the instructions below to setup and build the project in your local machine.
+Follow these steps to set up and build the project on your local machine.
 
 ### Prerequisites
 
-This project is build using the below tools. Please ensure you have the below prerequisites satisfied
+This project is built using the following tools. Please make sure you meet the prerequisites listed below.
 
 ```
 1. JDK 17 or above
@@ -19,7 +17,7 @@ This project is build using the below tools. Please ensure you have the below pr
 
 ### Open source libraries or plug-ins used
 
-This project uses the below open source libraries, frameworks and plugins.
+This project utilizes the following open-source libraries, frameworks, and plugins.
 
 ```
 1. Spring Boot Maven plug-in 1.5.7.RELEASE
@@ -34,14 +32,12 @@ This project uses the below open source libraries, frameworks and plugins.
 Clone and run the project using below commands.
 ```
 git clone https://github.com/weshare237/html-web-page-analyzer.git
-
 ```
-If you are using a IDE for example Intellij then, import project and choose pom.xml file. For more information
-you can check out the link https://spring.io/guides/gs/intellij-idea/
+If you are using an IDE such as IntelliJ, import the project and select the `pom.xml` file. For further details, you can visit [this guide](https://spring.io/guides/gs/intellij-idea/).
 
 ### Testing
 
-Use the below command to run automated test suite
+Use the following command to execute the automated test suite.
 
 ```
 mvn test
@@ -49,14 +45,13 @@ mvn test
 
 ### Running
 
-Use the below command to build the project and run from the project root directory.
-The project will build and run in a embedded tomcat instance.
+Use the following command to build the project and run it from the project's root directory. The project will be built and executed in an embedded Tomcat instance.
 
 ```
 mvn spring-boot:run
 ```
 
-If the build is successful then you should see something like this in the console
+If the build is successful, you will see something similar to this in the console:
 
 ```
   .   ____          _            __ _ _
@@ -83,25 +78,51 @@ If the build is successful then you should see something like this in the consol
 
 ### How to use the application?
 
-To check and ensure everything works as expected, open a browser window and hit the below url.
+To verify that everything is functioning correctly, open a web browser and visit the following URL:
 
 ```
 http://localhost:8080
 ```
 
-You should see a page with a text box prompting for url to be entered. Enter the URL
-and click 'Analyze' as shown below.
+You will encounter a page with a text box where you can enter a URL. Input the URL and click 'Analyze' as depicted below.
 
-The results are shown in a simple tabular fashion which includes below items
+The results are displayed in a straightforward table format, including the following details:
+
 1. HTML Version
 2. Page title
-3. If the page has a login form or not
+3. Presence of a login form
 4. Total number of different heading types
-5. Total number of links categorized as internal and external links. Internal links are the links which contain the
-   same domain as the url queried for and external links are ones which are pointing to a different domain.
+5. Total number of links categorized as internal and external. Internal links are those within the same domain as the queried URL, while external links point to different domains.
+6. Paginated information listing various links, their reachability status, and any accompanying status messages such as error messages or HTTP status codes encountered during access attempts.
 
-6. Paginated information containing different links and if the links are reachable and a simple status message.
-   For example, showing information on what went wrong (error message or http status code) while trying to access the link.
+## Assumptions
+
+Following are some of the assumptions made during the development.
+1. All the urls will be submitted with http:// or https:// as a prefix.
+2. Latest version of modern browsers are to be supported. Behaviour of the application is
+   undefined when old version of browser is used.
+
+## Design decision
+
+1. Taking my programming language strengths into consideration I have decided to use
+   Java 8 and coded the sever side and majority of business logic in Java 8
+2. Decided to use simple html, css and javascript to render the results in the browser.
+   Client-side code is only rendering the screens and all the core business logic is served
+   by the server side.
+3. Spring boot framework is one of the most modern framework which offers a lot of out
+   of the box features such as support for REST framework, embedded tomcat-server with
+   minimal set of configuration and annotations and hence this is probably the first
+   choice for server side development.
+4. JSoup is a simple yet powerful library to parse html in java and hence I had no second
+   thoughts using this.
+5. For domain name matching in the url, I found Guava:23.1-jre library quite simple and
+   fits the purpose.
+6. For client side pagination I used a simple pagination.js plugin, its quite simple and easy
+   to use.
+7. For the optional part, I decided to perform pagination of links since performance is
+   quite relevant for this part.
+8. Pagination.js is a simple plug-in that can be used to implement pagination in the client
+   side using jQuery.
 
 ## Thank you!
 

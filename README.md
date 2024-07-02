@@ -95,6 +95,17 @@ The results are displayed in a straightforward table format, including the follo
 5. Total number of links categorized as internal and external. Internal links are those within the same domain as the queried URL, while external links point to different domains.
 6. Paginated information listing various links, their reachability status, and any accompanying status messages such as error messages or HTTP status codes encountered during access attempts.
 
+### Run the application using Docker
+Pull the docker image from Docker Hub
+
+```
+docker pull fkd2000/html-web-page-analyzer
+```
+Run a container form the Image
+```
+docker run --name <name> -d -p <port>:8080 fkd2000/html-web-page-analyzer
+```
+
 ## Assumptions
 
 Following are some of the assumptions made during the development.
@@ -104,24 +115,22 @@ Following are some of the assumptions made during the development.
 
 ## Design decision
 
-1. Taking my programming language strengths into consideration I have decided to use
-   Java 8 and coded the sever side and majority of business logic in Java 8
-2. Decided to use simple html, css and javascript to render the results in the browser.
+1. Decided to use simple html, css and javascript to render the results in the browser.
    Client-side code is only rendering the screens and all the core business logic is served
    by the server side.
-3. Spring boot framework is one of the most modern framework which offers a lot of out
+2. Spring boot framework is one of the most modern framework which offers a lot of out
    of the box features such as support for REST framework, embedded tomcat-server with
    minimal set of configuration and annotations and hence this is probably the first
    choice for server side development.
-4. JSoup is a simple yet powerful library to parse html in java and hence I had no second
+3. JSoup is a simple yet powerful library to parse html in java and hence I had no second
    thoughts using this.
-5. For domain name matching in the url, I found Guava:23.1-jre library quite simple and
+4. For domain name matching in the url, I found Guava:33.2.1-jre library quite simple and
    fits the purpose.
-6. For client side pagination I used a simple pagination.js plugin, its quite simple and easy
+5. For client side pagination I used a simple pagination.js plugin, its quite simple and easy
    to use.
-7. For the optional part, I decided to perform pagination of links since performance is
+6. For the optional part, I decided to perform pagination of links since performance is
    quite relevant for this part.
-8. Pagination.js is a simple plug-in that can be used to implement pagination in the client
+7. Pagination.js is a simple plug-in that can be used to implement pagination in the client
    side using jQuery.
 
 ## Thank you!

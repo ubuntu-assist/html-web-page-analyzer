@@ -83,9 +83,11 @@ public class HTMLAnalyzerController {
      * @return A Links object containing the extracted links and their reachability status.
      */
     @GetMapping("links")
-    public Links<Link> links(@RequestParam(value="url", defaultValue="http://") String url,
-                             @RequestParam(value="pageSize", defaultValue="5") int pageSize,
-                             @RequestParam(value="pageNumber", defaultValue="1") int pageNumber) {
+    public Links<Link> links(
+            @RequestParam(value="url", defaultValue="http://") String url,
+            @RequestParam(value="pageSize", defaultValue="5") int pageSize,
+            @RequestParam(value="pageNumber", defaultValue="1") int pageNumber
+    ) {
         log.info("Retrieving metadata for url: " + url);
         HtmlParser parser = new LinkParser();
         RequestWrapper request = new RequestWrapper();
